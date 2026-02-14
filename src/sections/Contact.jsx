@@ -5,42 +5,7 @@ import ProfileCard from '../components/ProfileCard'
 import profilePic from '../assets/Screenshot_2025-08-10-11-24-11-05.png'
 
 const Contact = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: ''
-  })
-  const [status, setStatus] = useState('idle')
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value })
-  }
-
-  const handleSubmit = async (e) => {
-    e.preventDefault()
-    setStatus('loading')
-    
-    try {
-      const response = await fetch('http://localhost:5000/api/contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      })
-
-      if (response.ok) {
-        setStatus('success')
-        setFormData({ name: '', email: '', message: '' })
-        setTimeout(() => setStatus('idle'), 3000)
-      } else {
-        setStatus('error')
-      }
-    } catch (error) {
-      console.error('Error submitting form:', error)
-      setStatus('error')
-    }
-  }
 
   return (
     <section id="contact" className="py-24 px-4 relative overflow-hidden">
@@ -64,15 +29,20 @@ const Contact = () => {
             transition={{ delay: 0.2 }}
             className="bg-slate-900/50 backdrop-blur-md border border-slate-700 p-8 rounded-2xl shadow-xl"
           >
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form
+              action="https://formsubmit.co/rchavadar@gmail.com"
+              method="POST"
+              className="space-y-6"
+            >
+              <input type="hidden" name="_captcha" value="false" />
+              <input type="hidden" name="_next" value="http://localhost:5173/thank-you" /> {/* Optional: You can create a thank you page */}
+
               <div>
                 <label htmlFor="name" className="block text-sm font-medium text-slate-300 mb-2">Name</label>
                 <input
                   type="text"
                   id="name"
                   name="name"
-                  value={formData.name}
-                  onChange={handleChange}
                   required
                   className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-white placeholder-slate-500 transition-all outline-none"
                   placeholder="Your Name"
@@ -85,8 +55,6 @@ const Contact = () => {
                   type="email"
                   id="email"
                   name="email"
-                  value={formData.email}
-                  onChange={handleChange}
                   required
                   className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-white placeholder-slate-500 transition-all outline-none"
                   placeholder="your@email.com"
@@ -98,8 +66,6 @@ const Contact = () => {
                 <textarea
                   id="message"
                   name="message"
-                  value={formData.message}
-                  onChange={handleChange}
                   required
                   rows={4}
                   className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-white placeholder-slate-500 transition-all outline-none resize-none"
@@ -109,24 +75,10 @@ const Contact = () => {
 
               <button
                 type="submit"
-                disabled={status === 'loading'}
-                className="w-full py-4 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg font-bold shadow-lg shadow-indigo-500/20 transition-all flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
+                className="w-full py-4 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg font-bold shadow-lg shadow-indigo-500/20 transition-all flex items-center justify-center gap-2"
               >
-                {status === 'loading' ? (
-                  <>
-                    <Loader2 className="w-5 h-5 animate-spin" />
-                    Sending...
-                  </>
-                ) : status === 'success' ? (
-                  'Message Sent!'
-                ) : status === 'error' ? (
-                   'Failed to Send. Try Again.'
-                ) : (
-                  <>
-                    <Send className="w-5 h-5" />
-                    Send Message
-                  </>
-                )}
+                <Send className="w-5 h-5" />
+                Send Message
               </button>
             </form>
           </motion.div>
