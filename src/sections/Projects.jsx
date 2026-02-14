@@ -6,7 +6,7 @@ const Projects = () => {
     {
       title: 'E-Commerce Platform',
       description: 'A modern online food delivery app for a user resturent and delivery partner screen.',
-      tech: ['React.js', 'Node.js', ''],
+      tech: ['React.js', 'Node.js', 'Supabase'],
     },
     {
       title: 'AI Career Guidance App',
@@ -14,14 +14,14 @@ const Projects = () => {
       tech: ['React', 'Firebase', 'Python','Tailwind CSS'],
     },
     {
-      title: 'Social Media App',
-      description: 'Connect and share moments with friends globally.',
-      tech: ['React Native', 'Firebase', 'Redux'],
+      title: 'AI Powered Civic Governance Assistant',
+      description: 'Help citizen to understand the jargan in the passed bill and also help them to connect with government and solve their problems.',
+      tech: ['React.js', 'Firebase', 'Generative AI','Supabase'],
     },
     {
       title: 'Portfolio V1',
       description: 'My previous portfolio site showcasing early work.',
-      tech: ['HTML', 'SCSS', 'JavaScript'],
+      tech: ['HTML', 'CSS', 'JavaScript'],
     },
   ]
 
