@@ -1,42 +1,162 @@
+import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Mail, Github, Linkedin, Twitter } from 'lucide-react'
+import { Mail, Github, Linkedin, Twitter, Send, Loader2 } from 'lucide-react'
+import ProfileCard from '../components/ProfileCard'
+import profilePic from '../assets/Screenshot_2025-08-10-11-24-11-05.png'
 
 const Contact = () => {
-  return (
-    <section id="contact" className="py-24 px-4 relative">
-      <div className="max-w-4xl mx-auto text-center">
-        <motion.h2
-          initial={{ opacity: 0, y: -20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          className="text-3xl md:text-5xl font-bold mb-8 text-white"
-        >
-          Get In Touch
-        </motion.h2>
-        <motion.p
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ delay: 0.2 }}
-          className="text-slate-400 text-lg mb-12 max-w-2xl mx-auto"
-        >
-          I'm currently looking for new opportunities. Whether you have a question or just want to say hi, I'll try my best to get back to you!
-        </motion.p>
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: ''
+  })
+  const [status, setStatus] = useState('idle')
 
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value })
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    setStatus('loading')
+    
+    try {
+      const response = await fetch('http://localhost:5000/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      })
+
+      if (response.ok) {
+        setStatus('success')
+        setFormData({ name: '', email: '', message: '' })
+        setTimeout(() => setStatus('idle'), 3000)
+      } else {
+        setStatus('error')
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error)
+      setStatus('error')
+    }
+  }
+
+  return (
+    <section id="contact" className="py-24 px-4 relative overflow-hidden">
+      <div className="max-w-7xl mx-auto">
         <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.4 }}
-          className="mb-20"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          className="text-center mb-16"
         >
-          <a
-            href="mailto:hello@example.com"
-            className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white rounded-full font-bold shadow-lg hover:shadow-purple-500/25 transition-all text-lg"
-          >
-            <Mail className="w-5 h-5" />
-            Say Hello
-          </a>
+          <h2 className="text-3xl md:text-5xl font-bold mb-6 text-white">Get In Touch</h2>
+          <p className="text-slate-400 text-lg max-w-2xl mx-auto">
+            Have a project in mind or just want to chat? Send me a message or connect on social media!
+          </p>
         </motion.div>
 
-        <div className="flex justify-center gap-8 mb-12">
+        <div className="grid lg:grid-cols-2 gap-12 items-start">
+          {/* Contact Form */}
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.2 }}
+            className="bg-slate-900/50 backdrop-blur-md border border-slate-700 p-8 rounded-2xl shadow-xl"
+          >
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div>
+                <label htmlFor="name" className="block text-sm font-medium text-slate-300 mb-2">Name</label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  required
+                  className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-white placeholder-slate-500 transition-all outline-none"
+                  placeholder="Your Name"
+                />
+              </div>
+              
+              <div>
+                <label htmlFor="email" className="block text-sm font-medium text-slate-300 mb-2">Email</label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
+                  className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-white placeholder-slate-500 transition-all outline-none"
+                  placeholder="your@email.com"
+                />
+              </div>
+              
+              <div>
+                <label htmlFor="message" className="block text-sm font-medium text-slate-300 mb-2">Message</label>
+                <textarea
+                  id="message"
+                  name="message"
+                  value={formData.message}
+                  onChange={handleChange}
+                  required
+                  rows={4}
+                  className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-white placeholder-slate-500 transition-all outline-none resize-none"
+                  placeholder="What's on your mind?"
+                />
+              </div>
+
+              <button
+                type="submit"
+                disabled={status === 'loading'}
+                className="w-full py-4 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg font-bold shadow-lg shadow-indigo-500/20 transition-all flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
+              >
+                {status === 'loading' ? (
+                  <>
+                    <Loader2 className="w-5 h-5 animate-spin" />
+                    Sending...
+                  </>
+                ) : status === 'success' ? (
+                  'Message Sent!'
+                ) : status === 'error' ? (
+                   'Failed to Send. Try Again.'
+                ) : (
+                  <>
+                    <Send className="w-5 h-5" />
+                    Send Message
+                  </>
+                )}
+              </button>
+            </form>
+          </motion.div>
+
+          {/* Profile Card */}
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.4 }}
+            className="flex justify-center"
+          >
+            <ProfileCard
+              name="Rishab Chavadar"
+              title="React Developer"
+              handle="Code-Cool-2006"
+              status="Open to Work"
+              contactText="Hire Me"
+              avatarUrl={profilePic}
+              showUserInfo
+              enableTilt={true}
+              enableMobileTilt
+              onContactClick={() => document.getElementById('name').focus()}
+              showIcon={false}
+              showBehindGlow={true}
+              behindGlowColor="rgba(99, 102, 241, 0.5)"
+            />
+          </motion.div>
+        </div>
+
+        <div className="flex justify-center gap-8 mt-20 mb-12">
           {[Github, Linkedin, Twitter].map((Icon, index) => (
             <a
               key={index}
@@ -48,7 +168,7 @@ const Contact = () => {
           ))}
         </div>
 
-        <footer className="text-slate-600 text-sm">
+        <footer className="text-center text-slate-600 text-sm">
           <p>© {new Date().getFullYear()} Portfolio. Built with React & Tailwind.</p>
         </footer>
       </div>
