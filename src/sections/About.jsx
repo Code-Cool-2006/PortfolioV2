@@ -1,8 +1,9 @@
 import { motion } from 'framer-motion'
+import InfiniteScroll from '../components/InfiniteScroll'
 
 const About = () => {
   const skills = [
-    "React", "Three.js", "Tailwind CSS", "Node.js", "TypeScript", "Next.js"
+    "React", "Firebase", "Tailwind CSS", "Node.js", "Javascript", "Generative AI"
   ]
 
   return (
@@ -33,23 +34,17 @@ const About = () => {
             </p>
           </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-          >
-            <h3 className="text-xl font-semibold mb-6 text-white">Tech Stack</h3>
-            <div className="flex flex-wrap gap-3">
-              {skills.map((skill, index) => (
-                <span
-                  key={index}
-                  className="px-4 py-2 rounded-full bg-slate-800 text-slate-300 text-sm border border-slate-700 hover:border-indigo-500/50 hover:bg-slate-800/80 transition-colors cursor-default"
-                >
-                  {skill}
-                </span>
-              ))}
-            </div>
-          </motion.div>
+          <div className="overflow-hidden">
+             <h3 className="text-xl font-semibold mb-6 text-white">Tech Stack</h3>
+             <InfiniteScroll 
+               items={skills.map(skill => (
+                 <span className="px-4 py-2 rounded-full bg-slate-800 text-slate-300 text-sm border border-slate-700 hover:border-indigo-500/50 hover:bg-slate-800/80 transition-colors cursor-default whitespace-nowrap">
+                   {skill}
+                 </span>
+               ))}
+               speed={20}
+             />
+          </div>
         </div>
       </div>
     </section>

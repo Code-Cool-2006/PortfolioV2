@@ -1,4 +1,5 @@
-import SplitText from '../components/SplitText'
+import DecryptedText from '../components/DecryptedText'
+import MagneticButton from '../components/MagneticButton'
 import { motion } from 'framer-motion'
 import { ArrowDown } from 'lucide-react'
 
@@ -7,11 +8,9 @@ const Hero = () => {
     <section className="relative min-h-screen flex flex-col items-center justify-center text-center px-4 overflow-hidden">
       <div className="z-10">
         <div className="mb-4">
-          <SplitText
-            text="Creative Developer"
-            className="text-4xl md:text-7xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-white to-slate-400"
-            delay={0.05}
-          />
+          <h1 className="text-4xl md:text-7xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-white to-slate-400">
+             <DecryptedText text="Creative Developer" />
+          </h1>
         </div>
         <motion.p
           initial={{ opacity: 0, y: 20 }}
@@ -26,12 +25,14 @@ const Hero = () => {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 1, duration: 0.5 }}
         >
-          <a
-            href="#projects"
-            className="px-8 py-3 bg-indigo-600 hover:bg-indigo-700 text-white rounded-full font-medium transition-all shadow-lg hover:shadow-indigo-500/25"
-          >
-            View Work
-          </a>
+          <MagneticButton className="inline-block">
+            <a
+              href="#projects"
+              className="px-8 py-3 bg-indigo-600 hover:bg-indigo-700 text-white rounded-full font-medium transition-all shadow-lg hover:shadow-indigo-500/25 block"
+            >
+              View Work
+            </a>
+          </MagneticButton>
         </motion.div>
       </div>
 

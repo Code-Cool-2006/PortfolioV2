@@ -26,15 +26,15 @@ const NavBar = () => {
       }`}
     >
       <div className="flex items-center justify-between px-6 md:px-12">
-        <a href="#" className="text-xl font-bold bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">
-          Portfolio
+        <a href="#" className="text-xl font-bold bg-gradient-to-r from-amber-300 to-yellow-500 bg-clip-text text-transparent">
+          Rishab Chavadar
         </a>
         <div className="flex gap-6">
           {navLinks.map((link) => (
             <a
               key={link.name}
               href={link.href}
-              className="text-sm font-medium text-slate-300 hover:text-white transition-colors"
+              className="text-sm font-bold text-slate-300 hover:text-white transition-colors"
             >
               {link.name}
             </a>

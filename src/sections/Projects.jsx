@@ -5,13 +5,13 @@ const Projects = () => {
   const projects = [
     {
       title: 'E-Commerce Platform',
-      description: 'A modern shopping experience built with Next.js and Stripe.',
-      tech: ['Next.js', 'Stripe', 'Tailwind'],
+      description: 'A modern online food delivery app for a user resturent and delivery partner screen.',
+      tech: ['React.js', 'Node.js', ''],
     },
     {
-      title: 'AI Dashboard',
-      description: 'Real-time data visualization and analytics dashboard.',
-      tech: ['React', 'D3.js', 'Python'],
+      title: 'AI Career Guidance App',
+      description: 'Real-time AI Career Guidance App for students and professionals.',
+      tech: ['React', 'Firebase', 'Python','Tailwind CSS'],
     },
     {
       title: 'Social Media App',
