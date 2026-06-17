@@ -3,7 +3,7 @@ name: CI/CD Deploy to EC2
 on:
   push:
     branches:
-      - main # Triggers the workflow automatically whenever you push to the main branch
+      - master # Triggers the workflow automatically whenever you push to the main branch
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
