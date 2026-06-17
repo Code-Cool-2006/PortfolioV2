@@ -5,4 +5,5 @@ RUN npm install
 COPY . .
 RUN npm run build
 EXPOSE 3000
-CMD ["npm", "start"]
+# Change this line in your Dockerfile
+CMD ["npm", "run", "preview", "--", "--host", "3000"]
