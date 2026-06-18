@@ -4,7 +4,7 @@ import { Briefcase, GraduationCap, Calendar } from 'lucide-react'
 const Experience = () => {
   const items = [
     {
-      role: 'Lead Frontend Developer',
+      role: 'Frontend Developer',
       company: 'Freelance & Open Source Projects',
       period: '2024 - Present',
       description: [
@@ -16,25 +16,31 @@ const Experience = () => {
       color: 'from-indigo-500 to-indigo-600'
     },
     {
-      role: 'Software Engineer Intern',
-      company: 'Web Solutions Inc.',
-      period: '2023 - 2024',
+      role: 'Intern',
+      company: 'AEQUS Hubli',
+      period: 'March 2025 - March 2025',
       description: [
-        'Collaborated on building user-friendly e-commerce portals and interactive governance assistance applications.',
-        'Implemented modern styling systems using Tailwind CSS and custom PostCSS configurations.',
-        'Authored robust unit tests and participated in code review processes to maintain codebase integrity.'
+        "I built a Employee Management application that is a web-based tool designed to streamline employee information management efficiently. It allows admins to register, log in, add employee details, view employee lists, and download data in Excel format. Additionally, it incorporates a secure feature to view registered user information, accessible only through valid credentials."
       ],
       icon: Briefcase,
       color: 'from-purple-500 to-purple-600'
     },
     {
-      role: 'Frontend Engineering Studies',
-      company: 'Technical Academic Milestones',
-      period: '2022 - 2023',
+      role: 'Webmaster',
+      company: 'IEEE Student Branch KLS GIT',
+      period: ' Feb 2026 - Present',
       description: [
-        'Mastered foundational Web Design principles, including HTML5, CSS3, JavaScript (ES6+), and advanced React patterns.',
-        'Built algorithms and utility systems such as the CPU Scheduling Visualizer and modern responsive UI templates.',
-        'Practiced Git version control workflows and deployment pipelines on Netlify and Vercel.'
+        "As the Webmaster for IEEE Student Branch KLS GIT, I contribute to the development and maintenance of the Club's Technical Portal and enhance the online presence of the branch by creating Website which will be used for event registration and other activities. "
+      ],
+      icon: GraduationCap,
+      color: 'from-pink-500 to-pink-600'
+    },
+    {
+      role: 'Assistant Webmaster',
+      company: 'CodeChef Club KLS GIT',
+      period: ' Feb 2026 - Present',
+      description: [
+        "As the Assistant Webmaster for CodeChef Club KLS GIT, I contribute to the development of Websites for upcoming events and activities. "
       ],
       icon: GraduationCap,
       color: 'from-pink-500 to-pink-600'
