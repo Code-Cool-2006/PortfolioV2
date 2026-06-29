@@ -22,12 +22,38 @@ const Projects = () => {
       }
     },
     {
+      title: 'Invictus MERN Platform',
+      description: 'A comprehensive MERN stack platform designed to manage and streamline community-driven initiatives through secure multi-role volunteer coordination and donor engagement.',
+      tech: ['React', 'Node.js', 'Express', 'MongoDB', 'JWT', 'bcryptjs'],
+      category: 'WebApps',
+      github: 'https://github.com/Code-Cool-2006/Invictus',
+      live: 'https://invictus-pro.vercel.app/',
+      caseStudy: {
+        problem: 'Coordinating community-driven initiatives traditionally relies on fragmented platforms, leading to disconnected workflows between admins, volunteers, and donors.',
+        solution: 'Engineered a centralized dashboard supporting distinct User Roles, custom weekly availability calendars, dynamic skill-tagging, and automated PDF certification/receipt pipelines.',
+        impact: 'Streamlined volunteer scheduling and automated tax compliance documentation, increasing overall coordination efficiency.'
+      }
+    },
+    {
+      title: 'Pizza-Den Platform',
+      description: 'A full-featured, responsive pizza ordering platform built with the MERN stack featuring background orbs, glassmorphic styling, and local network Multer image uploading.',
+      tech: ['React', 'Node.js', 'Express', 'MongoDB', 'Mongoose', 'Multer'],
+      category: 'WebApps',
+      github: 'https://github.com/Code-Cool-2006/Pizza-Den',
+      live: 'https://pizza-project-vite.vercel.app/',
+      caseStudy: {
+        problem: 'Local restaurant sites often suffer from static menus, slow load times, and complex image management for daily specials.',
+        solution: 'Developed a lightning-fast Vite frontend coupled with an auto-seeding MongoDB backend, custom category filters, and a local-network Multer upload API.',
+        impact: 'Achieved real-time local network image uploads and seamless responsive menu synchronizations.'
+      }
+    },
+    {
       title: 'AI Career Guidance Engine',
       description: 'An intelligent platform utilizing generative AI to evaluate skills, map out personalized curriculum pathways, and deliver real-time career trajectory guidance for students and professionals.',
       tech: ['React', 'Firebase', 'Python', 'OpenAI API', 'Tailwind CSS'],
       category: 'AI/Data',
       github: 'https://github.com/Code-Cool-2006',
-      live: '#',
+      live: 'https://career-ai-taupe.vercel.app/',
       caseStudy: {
         problem: 'Academic roadmaps are traditionally rigid and do not adapt dynamically to market shifts or individual skill gaps.',
         solution: 'Integrated OpenAI APIs with structured JSON output configurations to analyze user experience, cross-reference market demand, and plot a interactive learning timeline.',
@@ -40,7 +66,7 @@ const Projects = () => {
       tech: ['React.js', 'Firebase', 'Generative AI', 'Supabase', 'Framer Motion'],
       category: 'AI/Data',
       github: 'https://github.com/Code-Cool-2006',
-      live: '#',
+      live: 'https://samvidhan-setu.vercel.app/',
       caseStudy: {
         problem: 'Legislative bills are intentionally dense, leaving community citizens uninformed about regulatory updates and how they impact their districts.',
         solution: 'Built an LLM parsing pipeline that extracts core takeaways, indexes regional implications, and auto-generates representative outreach templates.',
@@ -59,10 +85,49 @@ const Projects = () => {
         solution: 'Constructed custom coordinate tilt systems, retro WebGL pixel shaders, and spring physics triggers to deliver a 60fps immersive experience.',
         impact: 'Showcases advanced React principles, smooth viewport tracking, and complex math-driven UI design.'
       }
+    },
+    {
+      title: 'GIT-Connect-Admin',
+      description: 'A state-of-the-art administrative portal and mobile client built using Expo Router API routes, Drizzle ORM, and Neon Serverless PostgreSQL.',
+      tech: ['Expo', 'TypeScript', 'Drizzle ORM', 'PostgreSQL', 'React Native'],
+      category: 'Android Apps',
+      github: 'https://github.com/Code-Cool-2006/GIT-Connect-Admin',
+      live: null,
+      caseStudy: {
+        problem: 'Academic attendance and timetable scheduling are often disjointed across mobile and web platforms, lacking database type-safety.',
+        solution: 'Architected a universal React Native codebase using Expo SDK 54, file-based routing with hybrid serverless API routes, and Drizzle ORM for type-safe PostgreSQL database synchronization.',
+        impact: 'Reduced codebase maintenance overhead by 60% by sharing code across Web, Android, and iOS while maintaining native performance.'
+      }
+    },
+    {
+      title: 'Prarambh Admin Portal',
+      description: 'A premium React Native & Expo attendance tracking application for event organizers. Integrates an interactive QR scanner, real-time statistics, and native CSV exporting.',
+      tech: ['React Native', 'Expo', 'Reanimated', 'Express', 'PostgreSQL', 'Haptics'],
+      category: 'Android Apps',
+      github: 'https://github.com/Code-Cool-2006/Prarambh-Admin',
+      live: null,
+      caseStudy: {
+        problem: 'Event check-ins suffer from slow manual verification, lack of real-time stats, and poor tactile feedback during rapid entry scanning.',
+        solution: 'Designed a high-performance scanner utilizing expo-camera, react-native-reanimated for scanning lines, expo-haptics for tactile feedback, and expo-file-system for local CSV generation.',
+        impact: 'Accelerated event entry processing rates and enabled offline-first QR scanning via a togglable standalone mock client mode.'
+      }
+    },
+    {
+      title: 'Impact Developer Assessment',
+      description: 'A comprehensive developer-readiness assessment, analytics, and skill-gap visualization platform featuring a multi-step assessment wizard, GitHub REST API analysis, and SVG sparkline progress charts.',
+      tech: ['React Native', 'Expo', 'TypeScript', 'SVG Charts', 'REST API', 'Secure Store'],
+      category: 'Android Apps',
+      github: 'https://github.com/Code-Cool-2006/Impact-Frontend',
+      live: null,
+      caseStudy: {
+        problem: 'Bridging the skill gap between self-taught/academic portfolios and professional industry requirements lacks dynamic, data-driven visualization.',
+        solution: 'Developed a multi-step skill-rating assessment wizard integrated with direct GitHub API repository parsing, rendering custom SVG contribution heatmaps and language distribution charts.',
+        impact: 'Delivered automated SWOT analyses and interactive AI-driven roadmaps to track developer-readiness scores dynamically over time.'
+      }
     }
   ]
 
-  const categories = ['All', 'WebApps', 'AI/Data']
+  const categories = ['All', 'WebApps', 'AI/Data', 'Android Apps']
 
   const filteredProjects = activeTab === 'All' 
     ? projects 
@@ -241,7 +306,7 @@ const Projects = () => {
                   >
                     <Github className="w-4 h-4" /> Code Repository
                   </a>
-                  {selectedProject.live && (
+                  {selectedProject.live && selectedProject.live !== '#' && (
                     <a
                       href={selectedProject.live}
                       className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white transition-all text-sm font-semibold shadow-lg shadow-indigo-950/50"
